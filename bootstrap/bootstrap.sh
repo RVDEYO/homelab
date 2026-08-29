@@ -56,7 +56,7 @@ helm install  \
 echo "Installing ArgoCD..."
 kubectl create namespace argocd
 
-kubectl apply -n argocd \
+kubectl apply -n argocd --server-side \
   -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
 
 echo "Waiting for ArgoCD server to be ready..."

@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: lb-test
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/RVDEYO/homelab.git
+    targetRevision: main
+    path: gitops/apps/lb-test
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: lb-test
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
