@@ -25,6 +25,7 @@ resource "proxmox_virtual_environment_vm" "talos" {
     datastore_id = "local-lvm"
     interface    = "scsi0"
     import_from  = data.proxmox_file.talos.id
+    size         = each.value.disk
   }
 
   scsi_hardware = "virtio-scsi-pci"
